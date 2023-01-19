@@ -6,19 +6,13 @@ import java.util.Objects;
 
 @Entity
 public class AppUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     @Column
     private String username;
 
     @Column
     private String password;
 
-    public AppUser(Long id, String username, String password) {
-        this.id = id;
+    public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -27,22 +21,12 @@ public class AppUser {
 
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Long getId() {
-        return id;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -55,10 +39,10 @@ public class AppUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AppUser appUser)) return false;
-        return Objects.equals(getId(), appUser.getId());
+        return username.equals(appUser.username);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getUsername());
     }
 }

@@ -21,8 +21,6 @@ public class AppUserServiceTest {
     private UserService userService;
     private final static String username = "nico";
     private final static String password = "nico!";
-    private final static long id = 1;
-
     @BeforeEach
     public void init(){
         userService = new UserService(userRepo);
@@ -30,7 +28,7 @@ public class AppUserServiceTest {
     @Test
     public void findUserByUsername_withCorrectUsername_shouldReturnUser() {
         // Given
-        AppUser appUser = new AppUser(id, username, password);
+        AppUser appUser = new AppUser(username, password);
 
         // When
         when(userRepo.findUserByUsername(username)).thenReturn(Optional.of(appUser));
