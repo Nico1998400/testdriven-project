@@ -19,6 +19,13 @@ public class UserService {
 
     @Transactional
     public boolean login(String username, String password) throws Exception {
+        AppUser appUser = userRepo.findUserByUsername(username).orElseThrow();
+        if (appUser == null) {
+            throw new Exception("User does not exist.");
+        }
+        if (!appUser.getPassword().equals(password)) {
+            throw new Exception("Incorrect password.");
+        }
         return true;
     }
 }
